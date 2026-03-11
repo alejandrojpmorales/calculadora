@@ -1,0 +1,222 @@
+xml
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Eficiencia y Ahorro Natural</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .slider-container {
+            margin-bottom: 30px;
+        }
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #ecf0f1;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(52,152,219,0.4);
+        }
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(52,152,219,0.4);
+        }
+        .ticks {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 5px;
+        }
+        .detergent-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .detergent-btn {
+            border: 3px solid #ecf0f1;
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .detergent-btn.active {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+        .detergent-btn:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+        .no-plastic {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .no-plastic.active {
+            background: #e6f3d8;
+            border-color: #27ae60;
+        }
+        .benefit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none !important;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .benefit strong {
+            display: block;
+            font-size: 18px;
+        }
+        .calculate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(46,204,113,0.3);
+        }
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(46,204,113,0.4);
+        }
+        .calculate-btn:active {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="title">Calculadora de Eficiencia y Ahorro Natural</div>
+        <div class="subtitle">Descubre cuánto ahorras y cómo ayudas al planeta</div>
+        
+        <div class="slider-container">
+            <label class="label">Cargas de lavado por semana:</label>
+            <input type="range" class="slider" min="1" max="10" value="5" id="loads">
+            <div class="ticks">
+                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                <span>6</span><span>7</span><span>8</span><span>9</span><span>10+</span>
+            </div>
+        </div>
+        
+        <label class="label">Detergente actual:</label>
+        <div class="detergent-options">
+            <div class="detergent-btn" data-type="plastic">
+                <div style="font-size: 24px; margin-bottom: 5px;">🧴</div>
+                <div>Líquido</div>
+            </div>
+            <div class="detergent-btn" data-type="capsules">
+                <div style="font-size: 24px; margin-bottom: 5px;">💊</div>
+                <div>Cápsulas</div>
+            </div>
+            <div class="detergent-btn no-plastic active" data-type="eco">
+                <div style="font-size: 24px; margin-bottom: 5px;">📦</div>
+                <div>Plástico Reducido</div>
+            </div>
+        </div>
+        
+        <div class="benefit">
+            💧 Agua Ahorrada <strong>18 L/año</strong>
+        </div>
+        <div class="benefit">
+            💰 Ahorro Estimado <strong>€45/año</strong>
+        </div>
+        
+        <button class="calculate-btn">¡CALCULAR MI IMPACTO! ✨</button>
+    </div>
+
+    <script>
+        const loadsSlider = document.getElementById('loads');
+        const detergentBtns = document.querySelectorAll('.detergent-btn');
+        const calculateBtn = document.querySelector('.calculate-btn');
+        
+        // Update slider value display if needed
+        loadsSlider.addEventListener('input', function() {
+            // Could update a display value here if desired
+        });
+        
+        // Detergent selection
+        detergentBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                detergentBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Calculate button (placeholder functionality)
+        calculateBtn.addEventListener('click', function() {
+            const loads = loadsSlider.value;
+            const detergent = document.querySelector('.detergent-btn.active').dataset.type;
+            alert(`Cargas por semana: ${loads}\nDetergente: ${detergent.toUpperCase()}\n¡Calculando impacto...!`);
+            // Here you can add real calculation logic
+        });
+    </script>
+</body>
+</html>
